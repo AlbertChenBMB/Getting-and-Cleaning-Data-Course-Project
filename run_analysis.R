@@ -4,9 +4,9 @@ download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUC
 ### unzip file
 unzip("dataset")
 ###reading the directory
-dirpath <-"C:/Users/glab/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset"
-dirpath_test <-"C:/Users/glab/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset/test"
-dirpath_train <-"C:/Users/glab/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset/train"
+dirpath <-"C:/Users/User/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset"
+dirpath_test <-"C:/Users/User/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset/test"
+dirpath_train <-"C:/Users/User/Documents/GitHub/Getting-and-Cleaning-Data-Course-Project/UCI HAR Dataset/train"
 
 
 ###locating files
@@ -25,8 +25,15 @@ subject<-rbind(read.table(filesdirtrain[2]),read.table(filesdirtest[2]))
 ## Values 
 x<-rbind(read.table(filesdirtrain[3]),read.table(filesdirtest[3]))
 y<-rbind(read.table(filesdirtrain[4]),read.table(filesdirtest[4]))
-#Process to tydy data 
+#names data 
 names(activity_labels)<-c('ida','activity')
 names(subject)<-c('ids')
 names(y)<-c('ida')
 names(x)<-features[,2]
+#1. Merges the training and the test sets to create one data set.
+data = cbind(y, subject)
+data <-merge(data,activity_labels,by="ida", all.y=T)
+tidy_data <-data.frame(data,x)
+#2. Extracts only the measurements on the mean and standard deviation for each measurement.
+library(dplyr)
+#select(tidy_data,contains("mean")|contains("std"))
