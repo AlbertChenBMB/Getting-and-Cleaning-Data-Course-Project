@@ -67,9 +67,8 @@ colnames(tidy_data)<-Colname
 #  independent tidy data set with the average of each
 #  variable for each activity and each subject.
 ## group by subject and activity and summarise using mean
-tidy_dataMeans <- tidy_data %>% 
-        group_by(ids, activity) %>%
-        summarise_each(funs(mean))
+tidy_dataMeans<- group_by(tidy_data,ids, activity) 
+tidy_dataMeans<- summarise_each(tidy_dataMeans,funs(mean))
 
 # output to file "tidy_data2.txt"
 write.table(tidy_dataMeans, "tidy_data_2.txt", row.names = FALSE, 
