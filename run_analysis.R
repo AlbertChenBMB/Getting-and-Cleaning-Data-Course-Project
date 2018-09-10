@@ -38,9 +38,7 @@ rm(x_train,x_test,y_train,y_test)
 label = cbind(y, subject)
 data <-merge(label,activity_labels,by="label", all.y=T)
 tidy_data <-data.frame(data,x)
-# output to file "tidy_data.txt"
-write.table(tidy_data, "tidy_data.txt", row.names = FALSE, 
-            quote = FALSE)
+
 #2. Extracts only the measurements on the mean and standard deviation for each measurement.
 mean_std <- grepl("ids|activity|mean|std", colnames(tidy_data))
 tidy_data <- tidy_data[, mean_std]
@@ -48,6 +46,7 @@ tidy_data <- tidy_data[, mean_std]
 tidy_data$activity<- factor(tidy_data$activity,
                   levels = activity_labels[, 2], 
                   labels = activity_labels[, 1])
+
 #4. Appropriately labels the data set with descriptive variable names.
 ## get column names
 Colname <- colnames(tidy_data)
