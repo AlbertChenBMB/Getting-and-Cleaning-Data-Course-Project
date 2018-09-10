@@ -60,4 +60,5 @@ For each record it is provided:
  + from col. 51 to 65, we deal with the coiumn names
  + from col. 66 to 76, we creat and output tidy_data2
 ==================================================================
+
 9/10 Delete the dataset and tidy_data, because it's not nesserry.
